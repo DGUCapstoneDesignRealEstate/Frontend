@@ -1,0 +1,20 @@
+.startfootercontainer {
+  background-color: #eee;
+  height: 48px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+.startfooterbox {
+  height: 100%;
+  width: max-content;
+  position: relative;
+}
+.startfootertext {
+  text-align: center;
+  font-size: 10px;
+  font-family: 'SCDream3';
+}

@@ -1,0 +1,49 @@
+.logohomewrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+.logohomecontainer {
+  height: 280px;
+  width: 280px;
+  position: relative;
+}
+.logohomebox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.logohomeimg {
+  height: 80%;
+  width: 100%;
+  position: relative;
+}
+.homemlg {
+  width: 72%;
+  object-fit: cover;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+.homeapt {
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  bottom: 0px;
+}
+.logohometext {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.logohomebudda {
+  font-family: 'SCDream7';
+  font-size: 20px;
+}
+.logohomekr {
+  font-size: 12px;
+  font-family: 'SCDream5';
+}

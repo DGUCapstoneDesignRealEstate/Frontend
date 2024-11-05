@@ -1,0 +1,35 @@
+.headercontainer {
+  height: 96px;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #e4d6be;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 2px 4px #00000030;
+}
+.headerbox {
+  position: relative;
+  width: 1920px;
+  left: 20px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.teamname {
+  font-family: 'SCDream5';
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  margin-left: 32px;
+  width: min-content;
+}
+.headertitle {
+  margin: 0;
+  font-family: 'SCDream7';
+  font-size: 36px;
+  width: max-content;
+}

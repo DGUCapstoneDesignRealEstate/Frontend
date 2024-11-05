@@ -1,0 +1,8 @@
+#map {
+  width: 100vw; /* 화면 크기에 따라 지도 확장 */
+  height: 300px;
+  border: none; /* iframe 경계선 없애기 */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
