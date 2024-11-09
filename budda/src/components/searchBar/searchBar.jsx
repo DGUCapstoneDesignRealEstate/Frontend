@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { IoSearch } from 'react-icons/io5';
-import './searchBar.css';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { IoSearch } from "react-icons/io5";
+import "./searchBar.css";
 
 const BarWrapper = styled.div`
   position: relative;
@@ -18,7 +18,7 @@ const BarWrapper = styled.div`
 `;
 
 export default function SearchBar() {
-  const [search, setSerach] = useState('');
+  const [search, setSerach] = useState("");
   return (
     <BarWrapper>
       <IoSearch color="#CCAF78" />
