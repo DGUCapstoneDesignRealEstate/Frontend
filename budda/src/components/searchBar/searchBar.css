@@ -4,6 +4,7 @@
   color: #777;
   background-color: transparent;
   border-color: transparent;
+  width: 336px;
 }
 .searchbartext:focus {
   outline: none;
