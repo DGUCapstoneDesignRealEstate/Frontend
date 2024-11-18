@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { useState, useEffect, useRef } from "react";
+import styled, { keyframes } from "styled-components";
 
 const slideDown = keyframes`
   from {
@@ -24,7 +24,7 @@ const FilterWrapper = styled.div`
 `;
 
 const FilterContainer = styled.div`
-  width: ${({ width }) => width || '120px'};
+  width: ${({ width }) => width || "120px"};
   height: 24px;
   border-radius: 12px;
   background-color: #f9f1e3;
@@ -35,11 +35,11 @@ const FilterContainer = styled.div`
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  animation: ${({ isPressed }) => (isPressed ? pressEffect : 'none')} 0.3s ease;
+  animation: ${({ isPressed }) => (isPressed ? pressEffect : "none")} 0.3s ease;
 `;
 
 const FilterText = styled.div`
-  font-family: 'SCDream4';
+  font-family: "SCDream4";
   font-size: 14px;
   z-index: 1;
 `;
@@ -47,8 +47,8 @@ const FilterText = styled.div`
 const FilterToggle = styled.div`
   position: absolute;
   border-radius: 12px;
-  width: ${({ width }) => width || '120px'};
-  max-height: ${({ isOpen }) => (isOpen ? '84px' : '0')};
+  width: ${({ width }) => width || "120px"};
+  max-height: ${({ isOpen }) => (isOpen ? "84px" : "0")};
   display: flex;
   flex-direction: column;
   background-color: #f9f1e3;
@@ -60,7 +60,7 @@ const FilterToggle = styled.div`
 `;
 
 const FilterMenu = styled.div`
-  font-family: 'SCDream3';
+  font-family: "SCDream3";
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +71,7 @@ const FilterMenu = styled.div`
 
   &:hover {
     background-color: #ffe99a;
-    font-family: 'SCDream4';
+    font-family: "SCDream4";
   }
 `;
 
@@ -91,7 +91,7 @@ const Ripple = styled.span`
   }
 `;
 
-export default function Filter({ list, width = '120px' }) {
+export default function Filter({ list, width = "120px", onChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(list[0].name);
   const [ripplePosition, setRipplePosition] = useState(null);
@@ -117,6 +117,9 @@ export default function Filter({ list, width = '120px' }) {
   const handleOption = (option) => {
     setSelectedOption(option);
     setIsOpen(false);
+    if (onChange) {
+      onChange(option); // 선택된 옵션을 외부로 전달
+    }
   };
 
   const handleClickOutside = (event) => {
@@ -126,9 +129,9 @@ export default function Filter({ list, width = '120px' }) {
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -145,8 +148,8 @@ export default function Filter({ list, width = '120px' }) {
             style={{
               left: ripplePosition.x,
               top: ripplePosition.y,
-              width: '100px',
-              height: '100px',
+              width: "100px",
+              height: "100px",
             }}
           />
         )}
