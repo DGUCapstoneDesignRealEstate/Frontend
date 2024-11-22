@@ -25,7 +25,8 @@ const FilterWrapper = styled.div`
 
 const FilterContainer = styled.div`
   width: ${({ width }) => width || "120px"};
-  height: 24px;
+  height: 3.2vh;
+  min-height: 24px;
   border-radius: 12px;
   background-color: #f9f1e3;
   display: flex;
@@ -142,7 +143,11 @@ export default function Filter({ list, width = "120px", onChange }) {
         isPressed={isPressed}
         width={width}
       >
-        <FilterText>{selectedOption}</FilterText>
+        <FilterText>
+          {selectedOption ||
+            list[0].apartmentName ||
+            list[0].areaForExclusiveUse}
+        </FilterText>
         {ripplePosition && (
           <Ripple
             style={{
@@ -157,8 +162,13 @@ export default function Filter({ list, width = "120px", onChange }) {
       {isOpen && (
         <FilterToggle isOpen={isOpen} width={width}>
           {list.map((d) => (
-            <FilterMenu onClick={() => handleOption(d.name)} key={d.name}>
-              {d.name}
+            <FilterMenu
+              onClick={() =>
+                handleOption(d.name || d.apartmentName || d.areaForExclusiveUse)
+              }
+              key={d.name || d.apartmentName || d.areaForExclusiveUse}
+            >
+              {d.name || d.areaForExclusiveUse || d.apartmentName}
             </FilterMenu>
           ))}
         </FilterToggle>
