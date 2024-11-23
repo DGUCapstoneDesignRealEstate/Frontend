@@ -40,8 +40,8 @@ const FilterContainer = styled.div`
 `;
 
 const FilterText = styled.div`
-  font-family: "SCDream4";
-  font-size: 14px;
+  font-family: "SCDream5";
+  font-size: clamp(12px, 0.88vw, 24px);
   z-index: 1;
 `;
 
@@ -61,18 +61,18 @@ const FilterToggle = styled.div`
 `;
 
 const FilterMenu = styled.div`
-  font-family: "SCDream3";
+  font-family: "SCDream4";
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: clamp(12px, 0.88vw, 24px);
   cursor: pointer;
   width: 100%;
   line-height: 28px;
 
   &:hover {
     background-color: #ffe99a;
-    font-family: "SCDream4";
+    font-family: "SCDream5";
   }
 `;
 
@@ -153,8 +153,8 @@ export default function Filter({ list, width = "120px", onChange }) {
             style={{
               left: ripplePosition.x,
               top: ripplePosition.y,
-              width: "100px",
-              height: "100px",
+              width: "120px",
+              height: "120px",
             }}
           />
         )}

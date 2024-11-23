@@ -1,6 +1,6 @@
-import React from 'react';
-import './App.css';
-import StartPage from './pages/startPage/StartPage';
+import React from "react";
+import StartPage from "./pages/startPage/StartPage";
+import "./App.css";
 
 function App() {
   return (
