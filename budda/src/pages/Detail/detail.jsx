@@ -13,14 +13,16 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   top: 96px;
-  overflow: scroll;
+  overflow: auto;
   &::-webkit-scrollbar {
     display: none;
   }
+  height: calc(100vh - 96px);
 `;
+
 const Content = styled.div`
   display: flex;
-  gap: 12vw;
+  gap: 4vw;
   align-items: center;
 `;
 
