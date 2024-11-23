@@ -8,8 +8,7 @@ import axios from "../../axios";
 const FilterWrapper = styled.div`
   position: relative;
   display: flex;
-  margin-left: 28px;
-  gap: 20px;
+  gap: clamp(16px, 2vw, 32px);
 `;
 
 export default function FilterList() {

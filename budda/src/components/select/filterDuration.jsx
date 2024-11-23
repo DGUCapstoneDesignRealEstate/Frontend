@@ -1,48 +1,39 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
 const FilterWrapper = styled.div`
   position: relative;
-`;
-const FilterContainer = styled.div`
-  width: 360px;
-  height: 24px;
+  min-width: 320px;
+  width: 24vw;
+  min-height: 24px;
+  height: 3.2vh;
   border-radius: 12px;
   background-color: #f9f1e3;
   display: flex;
-  align-items: end;
   justify-content: center;
+  align-items: center;
   box-shadow: 0px 2px 2px #ddd;
   cursor: pointer;
-  gap: 20px;
+  gap: clamp(12px, 2vw, 20px);
+  font-family: "SCDream5";
+  font-size: clamp(12px, 0.88vw, 24px);
 `;
-const FilterText = styled.div`
-  font-family: 'SCDream4';
-  font-size: 14px;
-  margin-bottom: 2px;
-`;
+const FilterText = styled.div``;
 const DateChoice = styled.input`
   border: none;
   background-color: transparent;
-  font-family: 'SCDream5';
-  font-size: 14px;
-  margin-bottom: 1px;
+  font-family: "SCDream5";
+  font-size: clamp(12px, 0.88vw, 24px);
   text-align: center;
-  &&::before {
-    content: attr(data-placeholder);
-    font-size: smaller;
-    font-family: 'SCDream4';
-    font-size: 10px;
-  }
-  &&:focus::before,
-  &&:valid::before {
-    display: none;
-  }
+`;
+const Du = styled.div`
+  display: flex;
+  gap: clamp(8px, 0.4vw, 20px);
 `;
 
 export default function FilterDuration() {
-  const today = new Date().toISOString().split('T')[0];
-  const [startDate, setStartDate] = useState('');
+  const today = new Date().toISOString().split("T")[0];
+  const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState(today);
 
   const handleStartDate = (e) => {
@@ -55,24 +46,23 @@ export default function FilterDuration() {
 
   return (
     <FilterWrapper>
-      <FilterContainer>
-        <FilterText> 기간 선택 </FilterText>
+      <FilterText> 기간 선택 </FilterText>
+      <Du>
         <DateChoice
           type="date"
           max={endDate}
           onChange={handleStartDate}
-          data-placeholder="시작일 선택"
           required
         />
+        ~
         <DateChoice
           type="date"
-          data-placeholder="종료일 선택"
           required
           min={startDate}
           max={today}
           onChange={handleEndDate}
         />
-      </FilterContainer>
+      </Du>
     </FilterWrapper>
   );
 }

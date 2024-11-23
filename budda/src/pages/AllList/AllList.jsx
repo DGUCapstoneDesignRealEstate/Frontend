@@ -1,56 +1,46 @@
-import React from 'react';
-import Header from '../../components/header/header';
-import FilterList from '../../components/select/filterList';
-import styled from 'styled-components';
-import ListCompo from '../../components/lists/listComponent';
-import PageBtn from '../../components/lists/pageBtn';
-import SearchBar from '../../components/searchBar/searchBar';
-import FooterHome from '../../components/footer/footerStart';
-import DoubtSelection from '../../components/select/DoubtIcon';
+import React from "react";
+import Header from "../../components/header/header";
+import FilterList from "../../components/select/filterList";
+import styled from "styled-components";
+import ListCompo from "../../components/lists/listComponent";
+import SearchBar from "../../components/searchBar/searchBar";
 
 const Wrapper = styled.div`
-  position: relative;
-  width: 100vw;
-  height: calc(100vh - 164px);
+  position: absolute;
+  top: 96px;
   display: flex;
   flex-direction: column;
-  top: 104px;
-  padding-top: 12px;
   overflow: auto;
-  gap: 12px;
+  gap: 1.2vh;
   &::-webkit-scrollbar {
-    height: 8px;
-    width: 8px;
+    display: none;
   }
-  &::-webkit-scrollbar-thumb {
-    background: #f9f1e3;
-    border-radius: 4px;
-  }
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
+  height: calc(100vh - 96px);
+  width: 100%;
+  align-items: center;
+  margin: 0 auto;
 `;
 
-const Content = styled.div`
+const Head = styled.div`
+  position: relative;
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: clamp(12px, 1.2vh, 32px);
+  padding: 0vh 4vw 0vh 4vw;
+  margin-top: 2vh;
 `;
 
 export default function AllList() {
-  const title = '주택 전체 거래 내역';
-  const pageNum = 1;
-  const maxNum = 20;
+  const title = "주택 전체 거래 내역";
 
   return (
     <Wrapper>
-      <FilterList />
-      <Content>
+      <Head>
+        <FilterList />
         <SearchBar />
-        <DoubtSelection />
-      </Content>
+      </Head>
       <ListCompo />
-      <PageBtn pageNum={pageNum} maxNum={maxNum} />
-      <FooterHome />
       <Header title={title} />
     </Wrapper>
   );

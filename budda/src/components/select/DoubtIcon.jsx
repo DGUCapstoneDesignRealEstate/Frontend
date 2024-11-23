@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { PiSirenFill } from 'react-icons/pi';
-import styled, { keyframes } from 'styled-components';
+import React, { useState } from "react";
+import { PiSirenFill } from "react-icons/pi";
+import styled, { keyframes } from "styled-components";
 
 const pressEffect = keyframes`
   0% { transform: scale(1); }
@@ -11,7 +11,7 @@ const pressEffect = keyframes`
 const SelButton = styled.div`
   cursor: pointer;
   margin-top: 1px;
-  animation: ${({ isPressed }) => (isPressed ? pressEffect : 'none')} 0.2s ease;
+  animation: ${({ isPressed }) => (isPressed ? pressEffect : "none")} 0.2s ease;
 `;
 
 export default function DoubtSelection() {
@@ -26,7 +26,7 @@ export default function DoubtSelection() {
 
   return (
     <SelButton onClick={handleDoubt} isPressed={isPressed}>
-      <PiSirenFill color={isDoubt ? 'red' : 'black'} size={24} />
+      <PiSirenFill color={isDoubt ? "red" : "black"} size={24} />
     </SelButton>
   );
 }
