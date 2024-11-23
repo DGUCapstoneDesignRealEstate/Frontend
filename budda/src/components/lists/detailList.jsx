@@ -1,18 +1,18 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import aptList from './data';
+import React from "react";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import aptList from "./data";
 
 const Wrapper = styled.div`
   display: flex;
-  margin-left: 40px;
-  margin-top: 24px;
-  margin-bottom: 40px;
+  height: 40vh;
+  margin: 2vh 0vw 2vh 8vw;
 `;
 const Feature = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: clamp(8px, 2vh, 20px);
+  justify-content: center;
 `;
 const SaleDate = styled.div`
   display: flex;
@@ -21,22 +21,24 @@ const SaleDate = styled.div`
 `;
 const Title = styled.div`
   display: flex;
-  font-family: 'SCDream3';
-  font-size: 14px;
-  width: 120px;
+  font-family: "SCDream4";
+  font-size: clamp(12px, 1.4vw, 14px);
+  width: 12.8vw;
+  min-width: 80px;
 `;
 const Text = styled.div`
   display: flex;
-  font-family: 'SCDream4';
-  font-size: 14px;
+  font-family: "SCDream5";
+  font-size: clamp(12px, 1.4vw, 14px);
   white-space: nowrap;
-  width: 200px;
+  width: 16vw;
+  min-width: 80px;
 `;
 
 export default function DetailList() {
   const dataId = parseInt(useParams().id - 1);
   const apt = aptList[dataId];
-  const saleType = '중개거래';
+  const saleType = "중개거래";
   const buildYear = 2002;
   return (
     <Wrapper>

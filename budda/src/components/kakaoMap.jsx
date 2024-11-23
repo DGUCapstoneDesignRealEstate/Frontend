@@ -4,8 +4,8 @@ import styled from "styled-components";
 import "./kakaoMap.css";
 
 const MapWrapper = styled.div`
-  width: 100%;
-  height: 300px;
+  width: 56.8vw;
+  height: 40vh;
   position: relative;
 `;
 export default function KakaoMap() {
@@ -26,9 +26,8 @@ export default function KakaoMap() {
         id="map"
         center={loc}
         style={{
-          // 지도의 크기
-          width: "740px",
-          height: "300px",
+          width: "56.8vw",
+          height: "40vh",
         }}
         level={2} // 지도의 확대 레벨
       >

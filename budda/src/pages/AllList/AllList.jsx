@@ -7,7 +7,7 @@ import SearchBar from "../../components/searchBar/searchBar";
 
 const Wrapper = styled.div`
   position: absolute;
-  top: 96px;
+  top: calc(96px + 2vh);
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  height: calc(100vh - 96px);
+  height: calc(100vh - 96px - 2vh);
   width: 100%;
   align-items: center;
   margin: 0 auto;
@@ -28,7 +28,6 @@ const Head = styled.div`
   margin: 0 auto;
   gap: clamp(12px, 1.2vh, 32px);
   padding: 0vh 4vw 0vh 4vw;
-  margin-top: 2vh;
 `;
 
 export default function AllList() {
