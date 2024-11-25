@@ -1,5 +1,11 @@
+# React SPA 설정
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# API 프록시 설정
 [[redirects]]
   from = "/api/*"
   to = "http://52.79.44.246:8080/:splat"
   status = 200
-  force = true
