@@ -4,6 +4,7 @@ import FilterList from "../../components/select/filterList";
 import styled from "styled-components";
 import ListCompo from "../../components/lists/listComponent";
 import SearchBar from "../../components/searchBar/searchBar";
+import { FilterProvider } from "../../context/FilterContext";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -34,13 +35,15 @@ export default function AllList() {
   const title = "주택 전체 거래 내역";
 
   return (
-    <Wrapper>
-      <Head>
-        <FilterList />
-        <SearchBar />
-      </Head>
-      <ListCompo />
-      <Header title={title} />
-    </Wrapper>
+    <FilterProvider>
+      <Wrapper>
+        <Head>
+          <FilterList />
+          <SearchBar />
+        </Head>
+        <ListCompo />
+        <Header title={title} />
+      </Wrapper>
+    </FilterProvider>
   );
 }
