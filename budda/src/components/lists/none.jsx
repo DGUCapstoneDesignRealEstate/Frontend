@@ -1,18 +1,18 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FaExclamation } from 'react-icons/fa';
+import React from "react";
+import styled from "styled-components";
+import { FaExclamation } from "react-icons/fa";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 184px);
+  height: calc(72vh - 96px);
   color: #ccaf78;
-  gap: 20px;
+  gap: 4vh;
 `;
 const Text = styled.div`
-  font-family: 'SCDream4';
+  font-family: "SCDream4";
 `;
 
 export default function None(props) {

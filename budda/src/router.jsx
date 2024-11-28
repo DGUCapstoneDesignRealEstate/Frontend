@@ -2,6 +2,7 @@ import AllList from "./pages/AllList/AllList";
 import App from "./App";
 import { createBrowserRouter } from "react-router-dom";
 import Detail from "./pages/Detail/detail";
+import { DetailProvider } from "./context/DetailContext";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/detail/:id",
-    element: <Detail />,
+    element: (
+      <DetailProvider>
+        <Detail />,
+      </DetailProvider>
+    ),
   },
 ]);
 

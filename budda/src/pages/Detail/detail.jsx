@@ -4,8 +4,7 @@ import Header from "../../components/header/header";
 import DetailList from "../../components/lists/detailList";
 import LineGraph from "../../components/lists/LineGraph";
 import KakaoMap from "../../components/kakaoMap";
-import { useParams } from "react-router-dom";
-import aptList from "../../components/lists/data";
+import { useDetailContext } from "../../context/DetailContext";
 
 const Wrapper = styled.div`
   position: relative;
@@ -27,8 +26,10 @@ const Content = styled.div`
 `;
 
 export default function Detail() {
-  const dataId = parseInt(useParams().id) - 1;
-  const title = aptList[dataId].name;
+  const { aptInfo } = useDetailContext();
+  if (!aptInfo) {
+    return <div>아파트 정보 없음</div>;
+  }
 
   return (
     <Wrapper>
@@ -37,7 +38,7 @@ export default function Detail() {
         <KakaoMap />
       </Content>
       <LineGraph />
-      <Header title={title} />
+      <Header title={aptInfo.apartmentName} />
     </Wrapper>
   );
 }
