@@ -1,19 +1,19 @@
-import AllList from './pages/AllList/AllList';
-import App from './App';
-import { createBrowserRouter } from 'react-router-dom';
-import Detail from './pages/Detail/detail';
+import AllList from "./pages/AllList/AllList";
+import App from "./App";
+import { createBrowserRouter } from "react-router-dom";
+import Detail from "./pages/Detail/detail";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
   },
   {
-    path: '/all-list',
+    path: "/all-list",
     element: <AllList />,
   },
   {
-    path: '/detail/:id',
+    path: "/detail/:id",
     element: <Detail />,
   },
 ]);

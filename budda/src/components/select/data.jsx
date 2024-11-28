@@ -1,8 +1,7 @@
 export const arrayList = [
   { name: "최신순" },
   { name: "전용면적 넓은 순" },
-  { name: "매매가 높은 순" },
-  { name: "예측가 높은 순" },
+  { name: "거래가격 높은 순" },
 ];
 export const guList = [
   { num: 1, name: "서울 전체" },
