@@ -9,6 +9,8 @@ const Wrapper = styled.div`
   justify-content: center;
   height: calc(72vh - 96px);
   color: #ccaf78;
+  width: 100vw;
+  margin: 0 auto;
   gap: 4vh;
 `;
 const Text = styled.div`

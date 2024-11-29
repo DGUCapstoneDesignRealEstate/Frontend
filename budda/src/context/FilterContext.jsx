@@ -121,10 +121,16 @@ export const FilterProvider = ({ children }) => {
   };
 
   const [isDoubt, setIsDoubt] = useState(false);
+  const [reliability, setReliability] = useState("ALL");
   const [isPressed, setIsPressed] = useState(false);
 
   const handleDoubt = () => {
     setIsDoubt((prev) => !prev);
+    if (isDoubt === false) {
+      setReliability("UNRELIABLE");
+    } else {
+      setReliability("ALL");
+    }
     setIsPressed(true);
     setTimeout(() => setIsPressed(false), 200); // 애니메이션 끝나면 초기화
   };
@@ -163,6 +169,7 @@ export const FilterProvider = ({ children }) => {
         isDoubt,
         isPressed,
         handleDoubt,
+        reliability,
       }}
     >
       {children}
