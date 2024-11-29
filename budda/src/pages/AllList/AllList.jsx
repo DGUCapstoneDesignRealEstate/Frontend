@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/header/header";
 import FilterList from "../../components/select/filterList";
 import styled from "styled-components";
 import ListCompo from "../../components/lists/listComponent";
 import SearchBar from "../../components/searchBar/searchBar";
 import { FilterProvider } from "../../context/FilterContext";
+import { useLocation } from "react-router-dom";
+import axios from "../../axios";
 
 const Wrapper = styled.div`
   position: absolute;
