@@ -40,32 +40,25 @@ export default function ListCompo() {
   const [params, setParams] = useState(null);
   const p = useParams();
   console.log(p);
-  const newParams = {
-    gu: selectedGu.name,
-    dong: selectedDong.name,
-    apartmentName: selectedApt.apartmentName,
-    areaForExclusiveUse: selectedArea.areaForExclusiveUse,
-    startDealDate: startDate,
-    endDealDate: endDate,
-    reliability: reliability,
-    notValid: true,
-    order: selectedOrderType.inorder,
-    orderType: selectedGu.eng,
-    page: pageNum - 1,
-  };
 
   const fetchAptList = async () => {
     setLoad(true);
     try {
-      if (params == null) {
-        setParams(p);
-      } else {
-        setParams(newParams);
-      }
       const response = await axios.get("apartment-transactions", {
-        params: params,
+        params: {
+          gu: selectedGu.name,
+          dong: selectedDong.name,
+          apartmentName: selectedApt.apartmentName,
+          areaForExclusiveUse: selectedArea.areaForExclusiveUse,
+          startDealDate: startDate,
+          endDealDate: endDate,
+          reliability: reliability,
+          notValid: true,
+          order: selectedOrderType.inorder,
+          orderType: selectedGu.eng,
+          page: pageNum - 1,
+        },
       });
-      setParams(newParams);
       console.log(selectedOrderType.inorder, selectedOrderType.eng, isDoubt);
       setAptList(response.data.content);
       setTotalPage(response.data.page.totalPages);
