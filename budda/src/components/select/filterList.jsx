@@ -20,11 +20,12 @@ export default function FilterList() {
     handleDongChange,
     handleAptChange,
     handleAreaChange,
+    handleOrderType,
   } = useFilterContext();
 
   return (
     <FilterWrapper>
-      <Filter list={arrayList} />
+      <Filter list={arrayList} onChange={handleOrderType} />
       <Filter list={guList} onChange={handleGuChange} />
       <Filter list={filteredDong} onChange={handleDongChange} />
       <Filter list={aptList} width="240px" onChange={handleAptChange} />

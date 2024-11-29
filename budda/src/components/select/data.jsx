@@ -1,7 +1,7 @@
 export const arrayList = [
-  { name: "최신순" },
-  { name: "전용면적 넓은 순" },
-  { name: "거래가격 높은 순" },
+  { name: "최신순", eng: "DEAL_DATE", inorder: "DESC" },
+  { name: "전용면적 넓은 순", eng: "AREA_FOR_EXCLUSIVE_USE", inorder: "DESC" },
+  { name: "거래가격 높은 순", eng: "DEAL_AMOUNT", inorder: "DESC" },
 ];
 export const guList = [
   { num: 1, name: "서울 전체" },

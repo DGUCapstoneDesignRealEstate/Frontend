@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { PiSirenFill } from "react-icons/pi";
 import styled, { keyframes } from "styled-components";
+import { useFilterContext } from "../../context/FilterContext";
 
 const pressEffect = keyframes`
   0% { transform: scale(1); }
@@ -15,14 +16,7 @@ const SelButton = styled.div`
 `;
 
 export default function DoubtSelection() {
-  const [isDoubt, setIsDoubt] = useState(false);
-  const [isPressed, setIsPressed] = useState(false);
-
-  const handleDoubt = () => {
-    setIsDoubt((prev) => !prev);
-    setIsPressed(true);
-    setTimeout(() => setIsPressed(false), 200); // 애니메이션 끝나면 초기화
-  };
+  const { isDoubt, isPressed, handleDoubt } = useFilterContext();
 
   return (
     <SelButton onClick={handleDoubt} isPressed={isPressed}>

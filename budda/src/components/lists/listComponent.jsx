@@ -4,8 +4,6 @@ import * as S from "./listComponentStyle";
 import { IoCaretBack, IoCaretForward } from "react-icons/io5";
 import axios from "../../axios";
 import { useFilterContext } from "../../context/FilterContext";
-import { arrayList } from "../select/data";
-import qs from "qs";
 import None from "./none";
 
 export default function ListCompo() {
@@ -15,10 +13,10 @@ export default function ListCompo() {
     selectedDong,
     selectedApt,
     selectedArea,
+    startDate,
+    endDate,
+    isDoubt,
   } = useFilterContext();
-
-  const startDate = "2006-01-01";
-  const endDate = "2024-11-29";
 
   const nav = useNavigate();
   const [pageNum, setPageNum] = useState(1); //리스트 현재 페이지 번호
@@ -36,47 +34,27 @@ export default function ListCompo() {
     return () => clearTimeout(timer);
   }, [pageNum]);
 
-  const [engOrder, setEngOrder] = useState("DEAL_DATE");
-  const [inOrder, setInOrder] = useState("DESC");
   const [load, setLoad] = useState(false);
-
-  useEffect(() => {
-    if (selectedOrderType === arrayList[0]) {
-      setEngOrder("DEAL_DATE");
-      setInOrder("DESC");
-    } else if (selectedOrderType === arrayList[1]) {
-      setEngOrder("AREA_FOR_EXCLUSIVE_USE");
-      setInOrder("DESC");
-    } else {
-      setEngOrder("DEAL_AMOUNT");
-      setInOrder("DESC");
-    }
-  }, [selectedOrderType]);
 
   const fetchAptList = async () => {
     setLoad(true);
     try {
-      const param1 = {
-        gu: selectedGu.name,
-        dong: selectedDong.name,
-        apartmentName: selectedApt.apartmentName,
-        areaForExclusiveUse: selectedArea.areaForExclusiveUse,
-        startDealDate: startDate,
-        endDealDate: endDate,
-        reliability: "ALL",
-        notValid: true,
-      };
-      const param2 = {
-        order: inOrder,
-        orderType: engOrder,
-        page: pageNum,
-      };
       const response = await axios.get("apartment-transactions", {
-        searchCondition: param1,
-        customPageable: param2,
+        params: {
+          gu: selectedGu.name,
+          dong: selectedDong.name,
+          apartmentName: selectedApt.apartmentName,
+          areaForExclusiveUse: selectedArea.areaForExclusiveUse,
+          startDealDate: startDate,
+          endDealDate: endDate,
+          reliability: isDoubt,
+          notValid: true,
+          order: selectedOrderType.inorder,
+          orderType: selectedGu.eng,
+          page: pageNum - 1,
+        },
       });
-      console.log(param1);
-      console.log(response.data.content);
+      console.log(selectedOrderType.inorder, selectedOrderType.eng, isDoubt);
       setAptList(response.data.content);
       setTotalPage(response.data.page.totalPages);
     } catch (e) {
@@ -87,6 +65,7 @@ export default function ListCompo() {
   };
 
   useEffect(() => {
+    console.log(startDate, endDate, isDoubt);
     fetchAptList();
   }, [
     pageNum,
@@ -95,6 +74,9 @@ export default function ListCompo() {
     selectedApt,
     selectedArea,
     selectedOrderType,
+    startDate,
+    endDate,
+    isDoubt,
   ]);
 
   return (
@@ -114,7 +96,7 @@ export default function ListCompo() {
             {aptList.map((apt, index) => (
               <S.Item
                 shouldAnimate={shouldAnimate}
-                key={index}
+                key={apt.id}
                 onClick={() => {
                   nav(`/detail/${apt.id}`);
                 }}
@@ -127,7 +109,9 @@ export default function ListCompo() {
                 <S.SaleDate>{apt.dealDate}</S.SaleDate>
                 <S.RealPrice>{apt.dealAmount} (만 원)</S.RealPrice>
                 <S.PredictPrice>{apt.predictedCost} (만 원)</S.PredictPrice>
-                <S.DoubtType>{apt.isReliable}</S.DoubtType>
+                <S.DoubtType>
+                  {apt.isReliable === true ? <div>정상</div> : <div>의심</div>}
+                </S.DoubtType>
               </S.Item>
             ))}
           </S.List>

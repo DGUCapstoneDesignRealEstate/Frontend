@@ -108,6 +108,27 @@ export const FilterProvider = ({ children }) => {
     setSelectedOrderType(selectedorder || arrayList[0]);
   };
 
+  const today = new Date().toISOString().split("T")[0];
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState(today);
+
+  const handleStartDate = (e) => {
+    setStartDate(e.target.value);
+  };
+
+  const handleEndDate = (e) => {
+    setEndDate(e.target.value);
+  };
+
+  const [isDoubt, setIsDoubt] = useState(false);
+  const [isPressed, setIsPressed] = useState(false);
+
+  const handleDoubt = () => {
+    setIsDoubt((prev) => !prev);
+    setIsPressed(true);
+    setTimeout(() => setIsPressed(false), 200); // 애니메이션 끝나면 초기화
+  };
+
   return (
     <FilterContext.Provider
       value={{
@@ -132,6 +153,16 @@ export const FilterProvider = ({ children }) => {
         handleAptChange,
         handleAreaChange,
         handleOrderType,
+
+        today,
+        startDate,
+        endDate,
+        handleStartDate,
+        handleEndDate,
+
+        isDoubt,
+        isPressed,
+        handleDoubt,
       }}
     >
       {children}

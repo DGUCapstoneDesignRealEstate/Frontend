@@ -1,18 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "./filterDurationStyle";
+import { useFilterContext } from "../../context/FilterContext";
 
 export default function FilterDuration() {
-  const today = new Date().toISOString().split("T")[0];
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState(today);
-
-  const handleStartDate = (e) => {
-    setStartDate(e.target.value);
-  };
-
-  const handleEndDate = (e) => {
-    setEndDate(e.target.value);
-  };
+  const { today, startDate, endDate, handleEndDate, handleStartDate } =
+    useFilterContext();
 
   return (
     <S.FilterWrapper>

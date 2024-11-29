@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  height: calc(100vh - 96px - 2vh);
+  height: calc(98vh - 96px);
   width: 100%;
   align-items: center;
   margin: 0 auto;
