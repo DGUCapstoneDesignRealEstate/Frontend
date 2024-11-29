@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://52.79.44.246:8080',
+    baseURL: 'https://budda.pe.kr',
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',

@@ -16,6 +16,7 @@ export default function ListCompo() {
     startDate,
     endDate,
     isDoubt,
+    reliability,
   } = useFilterContext();
 
   const nav = useNavigate();
@@ -47,7 +48,7 @@ export default function ListCompo() {
           areaForExclusiveUse: selectedArea.areaForExclusiveUse,
           startDealDate: startDate,
           endDealDate: endDate,
-          reliability: isDoubt,
+          reliability: reliability,
           notValid: true,
           order: selectedOrderType.inorder,
           orderType: selectedGu.eng,
@@ -65,7 +66,7 @@ export default function ListCompo() {
   };
 
   useEffect(() => {
-    console.log(startDate, endDate, isDoubt);
+    console.log(startDate, endDate, isDoubt, reliability);
     fetchAptList();
   }, [
     pageNum,
@@ -77,66 +78,72 @@ export default function ListCompo() {
     startDate,
     endDate,
     isDoubt,
+    reliability,
   ]);
 
+  if (!aptList) {
+    return <div>로딩 중...</div>;
+  }
   return (
     <S.Wrapper>
-      {load === false ? (
-        <>
-          <S.Header>
-            <S.AptName>아파트명</S.AptName>
-            <S.Location>지역</S.Location>
-            <S.Area>전용 면적</S.Area>
-            <S.SaleDate>거래일자</S.SaleDate>
-            <S.RealPrice>실거래가(단위: 만 원)</S.RealPrice>
-            <S.PredictPrice>예측거래가(단위: 만 원)</S.PredictPrice>
-            <S.DoubtType>의심 여부</S.DoubtType>
-          </S.Header>
-          <S.List>
-            {aptList.map((apt, index) => (
-              <S.Item
-                shouldAnimate={shouldAnimate}
-                key={apt.id}
-                onClick={() => {
-                  nav(`/detail/${apt.id}`);
-                }}
-              >
-                <S.AptName>{apt.apartmentName}</S.AptName>
-                <S.Location>{apt.region}</S.Location>
-                <S.Area>
-                  {apt.areaForExclusiveUse}m<sup>2</sup>
-                </S.Area>
-                <S.SaleDate>{apt.dealDate}</S.SaleDate>
-                <S.RealPrice>{apt.dealAmount} (만 원)</S.RealPrice>
-                <S.PredictPrice>{apt.predictedCost} (만 원)</S.PredictPrice>
-                <S.DoubtType>
-                  {apt.isReliable === true ? <div>정상</div> : <div>의심</div>}
-                </S.DoubtType>
-              </S.Item>
-            ))}
-          </S.List>
-          <S.PageWrapper>
-            <S.But>
-              <IoCaretBack
-                onClick={() => handlePage(pageNum - 1)}
-                disabled={pageNum <= 1}
-                cursor="pointer"
-              />
-            </S.But>
-            <S.Num>
-              {pageNum} / {totalPage}
-            </S.Num>
-            <S.But>
-              <IoCaretForward
-                onClick={() => handlePage(pageNum + 1)}
-                disabled={pageNum >= totalPage}
-                cursor="pointer"
-              />
-            </S.But>
-          </S.PageWrapper>
-        </>
+      <S.Header>
+        <S.AptName>아파트명</S.AptName>
+        <S.Location>지역</S.Location>
+        <S.Area>전용 면적</S.Area>
+        <S.SaleDate>거래일자</S.SaleDate>
+        <S.RealPrice>실거래가(단위: 만 원)</S.RealPrice>
+        <S.PredictPrice>예측거래가(단위: 만 원)</S.PredictPrice>
+        <S.DoubtType>의심 여부</S.DoubtType>
+      </S.Header>
+      <S.List>
+        {!load ? (
+          aptList.map((apt, index) => (
+            <S.Item
+              shouldAnimate={shouldAnimate}
+              key={apt.id}
+              onClick={() => {
+                nav(`/detail/${apt.id}`);
+              }}
+            >
+              <S.AptName>{apt.apartmentName}</S.AptName>
+              <S.Location>{apt.region}</S.Location>
+              <S.Area>
+                {apt.areaForExclusiveUse}m<sup>2</sup>
+              </S.Area>
+              <S.SaleDate>{apt.dealDate}</S.SaleDate>
+              <S.RealPrice>{apt.dealAmount} (만 원)</S.RealPrice>
+              <S.PredictPrice>{apt.predictedCost} (만 원)</S.PredictPrice>
+              <S.DoubtType>
+                {apt.isReliable === true ? <div>정상</div> : <div>의심</div>}
+              </S.DoubtType>
+            </S.Item>
+          ))
+        ) : (
+          <None noText="로딩 중..." />
+        )}
+      </S.List>
+      {!load ? (
+        <S.PageWrapper>
+          <S.But>
+            <IoCaretBack
+              onClick={() => handlePage(pageNum - 1)}
+              disabled={pageNum <= 1}
+              cursor="pointer"
+            />
+          </S.But>
+          <S.Num>
+            {pageNum} / {totalPage}
+          </S.Num>
+          <S.But>
+            <IoCaretForward
+              onClick={() => handlePage(pageNum + 1)}
+              disabled={pageNum >= totalPage}
+              cursor="pointer"
+            />
+          </S.But>
+        </S.PageWrapper>
       ) : (
-        <None noText="로딩 중..." />
+        <div></div>
       )}
     </S.Wrapper>
   );

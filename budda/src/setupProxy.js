@@ -4,7 +4,7 @@ module.exports = function (app) {
     app.use(
         '/api',
         createProxyMiddleware({
-            target: 'http://52.79.44.246:8080',
+            target: 'https://budda.pe.kr',
             changeOrigin: true,
         })
     );

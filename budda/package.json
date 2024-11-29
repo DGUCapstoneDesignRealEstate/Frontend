@@ -44,5 +44,5 @@
     ]
   },
   "homepage": "https://budda-dgu.netlify.app/",
-  "proxy": "http://52.79.44.246:8080"
+  "proxy": "https://budda.pe.kr"
 }
