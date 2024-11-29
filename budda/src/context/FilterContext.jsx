@@ -87,6 +87,12 @@ export const FilterProvider = ({ children }) => {
   const handleDongChange = (selDong) => {
     const selectedDong = filteredDong.find((dong) => dong.name === selDong);
     setSelectedDong(selectedDong || filteredDong[0]);
+
+    // 동 변경 시, selectedApt을 초기화하지 않도록 조건 추가
+    if (selectedApt !== "아파트 선택") {
+      return; // 이미 사용자가 아파트를 선택했으면 변경하지 않음
+    }
+    // 아파트 선택 전이라면 첫 번째 아파트로 설정하지 않음
   };
 
   // 아파트 선택 변경 핸들러

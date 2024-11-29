@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./listComponentStyle";
 import { IoCaretBack, IoCaretForward } from "react-icons/io5";
 import axios from "../../axios";
@@ -36,25 +36,36 @@ export default function ListCompo() {
   }, [pageNum]);
 
   const [load, setLoad] = useState(false);
+  const [cache, setCache] = useState(1288188);
+  const [params, setParams] = useState(null);
+  const p = useParams();
+  console.log(p);
+  const newParams = {
+    gu: selectedGu.name,
+    dong: selectedDong.name,
+    apartmentName: selectedApt.apartmentName,
+    areaForExclusiveUse: selectedArea.areaForExclusiveUse,
+    startDealDate: startDate,
+    endDealDate: endDate,
+    reliability: reliability,
+    notValid: true,
+    order: selectedOrderType.inorder,
+    orderType: selectedGu.eng,
+    page: pageNum - 1,
+  };
 
   const fetchAptList = async () => {
     setLoad(true);
     try {
+      if (params == null) {
+        setParams(p);
+      } else {
+        setParams(newParams);
+      }
       const response = await axios.get("apartment-transactions", {
-        params: {
-          gu: selectedGu.name,
-          dong: selectedDong.name,
-          apartmentName: selectedApt.apartmentName,
-          areaForExclusiveUse: selectedArea.areaForExclusiveUse,
-          startDealDate: startDate,
-          endDealDate: endDate,
-          reliability: reliability,
-          notValid: true,
-          order: selectedOrderType.inorder,
-          orderType: selectedGu.eng,
-          page: pageNum - 1,
-        },
+        params: params,
       });
+      setParams(newParams);
       console.log(selectedOrderType.inorder, selectedOrderType.eng, isDoubt);
       setAptList(response.data.content);
       setTotalPage(response.data.page.totalPages);
@@ -63,6 +74,13 @@ export default function ListCompo() {
     } finally {
       setLoad(false);
     }
+  };
+
+  console.log(params);
+
+  const navigateToDetail = (aptId) => {
+    const queryParams = new URLSearchParams(params).toString(); // params를 URL 쿼리 파라미터로 변환
+    nav(`/detail/${aptId}?${queryParams}`); // Detail 페이지로 이동하면서 params를 전달
   };
 
   useEffect(() => {
@@ -102,7 +120,7 @@ export default function ListCompo() {
               shouldAnimate={shouldAnimate}
               key={apt.id}
               onClick={() => {
-                nav(`/detail/${apt.id}`);
+                navigateToDetail(apt.id);
               }}
             >
               <S.AptName>{apt.apartmentName}</S.AptName>
