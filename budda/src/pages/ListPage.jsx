@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
-import Header from "../../components/header/header";
-import FilterList from "../../components/select/filterList";
-import styled from "styled-components";
-import ListCompo from "../../components/lists/listComponent";
-import SearchBar from "../../components/searchBar/searchBar";
-import { FilterProvider } from "../../context/FilterContext";
-import { useLocation } from "react-router-dom";
-import axios from "../../axios";
+import Header from '../components/header/header';
+import FilterList from '../components/select/filterList';
+import styled from 'styled-components';
+import ListCompo from '../components/lists/listComponent';
+import SearchBar from '../components/searchBar/searchBar';
+import { FilterProvider } from '../context/FilterContext';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -33,8 +30,8 @@ const Head = styled.div`
   padding: 0vh 4vw 0vh 4vw;
 `;
 
-export default function AllList() {
-  const title = "주택 전체 거래 내역";
+export default function ListPage() {
+  const title = '주택 전체 거래 내역';
 
   return (
     <FilterProvider>
