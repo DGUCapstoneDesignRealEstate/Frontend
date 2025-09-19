@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { FaExclamation } from "react-icons/fa";
+import React from 'react';
+import styled from 'styled-components';
+import { FaExclamation } from 'react-icons/fa';
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,9 +13,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
   gap: 4vh;
 `;
-const Text = styled.div`
-  font-family: "SCDream4";
-`;
+const Text = styled.div``;
 
 export default function None(props) {
   return (

@@ -20,7 +20,7 @@
   gap: 32px;
 }
 .teamname {
-  font-family: 'SCDream5';
+  font-weight: 500;
   display: flex;
   align-items: center;
   height: 100%;
@@ -30,7 +30,7 @@
 }
 .headertitle {
   margin: 0;
-  font-family: 'SCDream7';
+  font-weight: 700;
   font-size: 36px;
   width: max-content;
 }

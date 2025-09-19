@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useState, useEffect, useRef } from 'react';
+import styled, { keyframes } from 'styled-components';
 
 const slideDown = keyframes`
   from {
@@ -24,7 +24,7 @@ const FilterWrapper = styled.div`
 `;
 
 const FilterContainer = styled.div`
-  width: ${({ width }) => width || "120px"};
+  width: ${({ width }) => width || '120px'};
   height: 3.2vh;
   min-height: 24px;
   border-radius: 12px;
@@ -36,11 +36,11 @@ const FilterContainer = styled.div`
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  animation: ${({ isPressed }) => (isPressed ? pressEffect : "none")} 0.3s ease;
+  animation: ${({ isPressed }) => (isPressed ? pressEffect : 'none')} 0.3s ease;
 `;
 
 const FilterText = styled.div`
-  font-family: "SCDream5";
+  font-weight: 500;
   font-size: clamp(12px, 0.88vw, 24px);
   z-index: 1;
 `;
@@ -48,8 +48,8 @@ const FilterText = styled.div`
 const FilterToggle = styled.div`
   position: absolute;
   border-radius: 12px;
-  width: ${({ width }) => width || "120px"};
-  max-height: ${({ isOpen }) => (isOpen ? "84px" : "0")};
+  width: ${({ width }) => width || '120px'};
+  max-height: ${({ isOpen }) => (isOpen ? '84px' : '0')};
   display: flex;
   flex-direction: column;
   background-color: #f9f1e3;
@@ -61,7 +61,6 @@ const FilterToggle = styled.div`
 `;
 
 const FilterMenu = styled.div`
-  font-family: "SCDream4";
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,7 +71,7 @@ const FilterMenu = styled.div`
 
   &:hover {
     background-color: #ffe99a;
-    font-family: "SCDream5";
+    font-weight: 500;
   }
 `;
 
@@ -92,7 +91,7 @@ const Ripple = styled.span`
   }
 `;
 
-export default function Filter({ list, width = "120px", onChange }) {
+export default function Filter({ list, width = '120px', onChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(list[0].name);
   const [ripplePosition, setRipplePosition] = useState(null);
@@ -130,9 +129,9 @@ export default function Filter({ list, width = "120px", onChange }) {
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -153,8 +152,8 @@ export default function Filter({ list, width = "120px", onChange }) {
             style={{
               left: ripplePosition.x,
               top: ripplePosition.y,
-              width: "120px",
-              height: "120px",
+              width: '120px',
+              height: '120px',
             }}
           />
         )}
