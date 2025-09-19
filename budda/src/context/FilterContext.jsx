@@ -4,9 +4,9 @@ import React, {
   useState,
   useEffect,
   useCallback,
-} from "react";
-import axios from "../axios";
-import { guList, dongList, arrayList } from "../components/select/data";
+} from 'react';
+import axios from '../axios';
+import { guList, dongList, arrayList } from '../data/data';
 
 const FilterContext = createContext();
 
@@ -18,19 +18,19 @@ export const FilterProvider = ({ children }) => {
     dongList.filter((dong) => dong.guNum === guList[0].num)
   );
   const [selectedDong, setSelectedDong] = useState(filteredDong[0]);
-  const [aptList, setAptList] = useState([{ apartmentName: "아파트 선택" }]);
+  const [aptList, setAptList] = useState([{ apartmentName: '아파트 선택' }]);
   const [areaList, setAreaList] = useState([
-    { areaForExclusiveUse: "전용면적 선택" },
+    { areaForExclusiveUse: '전용면적 선택' },
   ]);
-  const [selectedApt, setSelectedApt] = useState("아파트 선택");
-  const [selectedArea, setSelectedArea] = useState("전용면적 선택");
+  const [selectedApt, setSelectedApt] = useState('아파트 선택');
+  const [selectedArea, setSelectedArea] = useState('전용면적 선택');
   const [selectedOrderType, setSelectedOrderType] = useState(arrayList[0]);
 
   // 아파트 목록 가져오는 함수
   const fetchAptList = useCallback(async () => {
     try {
       const response = await axios.get(
-        "apartment-transactions/apartment-name",
+        'apartment-transactions/apartment-name',
         {
           params: {
             gu: selectedGu.name,
@@ -48,7 +48,7 @@ export const FilterProvider = ({ children }) => {
   // 면적 목록 가져오는 함수
   const fetchAreaList = useCallback(async () => {
     try {
-      const response = await axios.get("apartment-transactions/area", {
+      const response = await axios.get('apartment-transactions/area', {
         params: {
           gu: selectedGu.name,
           dong: selectedDong.name,
@@ -89,7 +89,7 @@ export const FilterProvider = ({ children }) => {
     setSelectedDong(selectedDong || filteredDong[0]);
 
     // 동 변경 시, selectedApt을 초기화하지 않도록 조건 추가
-    if (selectedApt !== "아파트 선택") {
+    if (selectedApt !== '아파트 선택') {
       return; // 이미 사용자가 아파트를 선택했으면 변경하지 않음
     }
     // 아파트 선택 전이라면 첫 번째 아파트로 설정하지 않음
@@ -98,7 +98,7 @@ export const FilterProvider = ({ children }) => {
   // 아파트 선택 변경 핸들러
   const handleAptChange = (selected) => {
     const selectedApt = aptList.find((apt) => apt.apartmentName === selected);
-    setSelectedApt(selectedApt || "아파트 선택");
+    setSelectedApt(selectedApt || '아파트 선택');
   };
 
   // 면적 선택 변경 핸들러
@@ -106,7 +106,7 @@ export const FilterProvider = ({ children }) => {
     const selectedArea = areaList.find(
       (area) => area.areaForExclusiveUse === selected
     );
-    setSelectedArea(selectedArea || "전용면적 선택");
+    setSelectedArea(selectedArea || '전용면적 선택');
   };
 
   const handleOrderType = (selected) => {
@@ -114,8 +114,8 @@ export const FilterProvider = ({ children }) => {
     setSelectedOrderType(selectedorder || arrayList[0]);
   };
 
-  const today = new Date().toISOString().split("T")[0];
-  const [startDate, setStartDate] = useState("");
+  const today = new Date().toISOString().split('T')[0];
+  const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState(today);
 
   const handleStartDate = (e) => {
@@ -127,15 +127,15 @@ export const FilterProvider = ({ children }) => {
   };
 
   const [isDoubt, setIsDoubt] = useState(false);
-  const [reliability, setReliability] = useState("ALL");
+  const [reliability, setReliability] = useState('ALL');
   const [isPressed, setIsPressed] = useState(false);
 
   const handleDoubt = () => {
     setIsDoubt((prev) => !prev);
     if (isDoubt === false) {
-      setReliability("UNRELIABLE");
+      setReliability('UNRELIABLE');
     } else {
-      setReliability("ALL");
+      setReliability('ALL');
     }
     setIsPressed(true);
     setTimeout(() => setIsPressed(false), 200); // 애니메이션 끝나면 초기화

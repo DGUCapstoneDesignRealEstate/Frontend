@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   LineChart,
   Line,
@@ -8,10 +8,9 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from "recharts";
-import "./LineGraph.css";
-import { useDetailContext } from "../../context/DetailContext";
-import axios from "../../axios";
+} from 'recharts';
+import { useDetailContext } from '../../context/DetailContext';
+import axios from '../../axios';
 
 // CustomDot 컴포넌트 정의
 const CustomDot = ({ cx, payload, yScale }) => {
@@ -48,7 +47,7 @@ export default function LineGraph() {
       setRealData(response.data.realData.realData);
       setPredictData(response.data.predictData.predictData);
     } catch (error) {
-      console.error("Error fetching graph data:", error);
+      console.error('Error fetching graph data:', error);
     }
   };
 
@@ -109,15 +108,16 @@ export default function LineGraph() {
   return (
     <div
       style={{
-        width: "100vw",
-        height: "40vh",
-        minHeight: "200px",
+        width: '100vw',
+        height: '40vh',
+        minHeight: '200px',
       }}
     >
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           data={data}
           margin={{ right: 40, left: 40 }}
+          style="font-size : 12px"
           className="linewrapper"
         >
           <CartesianGrid strokeDasharray="1 1" />
@@ -130,9 +130,9 @@ export default function LineGraph() {
             }}
             padding={{ left: 30, right: 30 }}
             label={{
-              value: "날짜",
+              value: '날짜',
               dx: 6,
-              position: "insideBottomLeft",
+              position: 'insideBottomLeft',
               offset: -5,
             }}
             tickCount={12}
@@ -142,9 +142,9 @@ export default function LineGraph() {
           <YAxis
             domain={[min - 1000, max + 1000]}
             label={{
-              value: "(만 원)",
+              value: '(만 원)',
               angle: -90,
-              position: "insideMiddle",
+              position: 'insideMiddle',
               dx: -32,
             }}
           />
@@ -153,8 +153,8 @@ export default function LineGraph() {
             type="monotone"
             dataKey="pred"
             stroke="red"
-            dot={{ fill: "red" }}
-            activeDot={{ fill: "#BE7C00" }}
+            dot={{ fill: 'red' }}
+            activeDot={{ fill: '#BE7C00' }}
             connectNulls={true}
             strokeDasharray="3 3"
           />

@@ -90,14 +90,13 @@ export const PredictPrice = styled(RealPrice)``;
 export const DoubtType = styled(Location)``;
 
 export const PageWrapper = styled.div`
-  position: relative;
+  position: fixed;
   display: flex;
-  margin: 0 auto;
   gap: clamp(16px, 2vw, 32px);
   align-items: center;
   justify-content: center;
   width: 100%;
-  top: 0.6vh;
+  bottom: 1vh;
 `;
 
 export const But = styled.div`

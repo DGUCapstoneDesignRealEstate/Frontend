@@ -1,9 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import Filter from "./filter";
-import FilterDuration from "./filterDuration";
-import { arrayList, guList } from "./data";
-import { useFilterContext } from "../../context/FilterContext";
+import styled from 'styled-components';
+import Filter from './filter';
+import FilterDuration from './filterDuration';
+import { arrayList, guList } from '../../../data/data';
+import { useFilterContext } from '../../../context/FilterContext';
 
 const FilterWrapper = styled.div`
   position: relative;
