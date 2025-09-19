@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const FilterWrapper = styled.div`
   position: relative;
@@ -14,14 +14,14 @@ export const FilterWrapper = styled.div`
   box-shadow: 0px 2px 2px #ddd;
   cursor: pointer;
   gap: clamp(12px, 2vw, 20px);
-  font-family: "SCDream5";
+  font-weight: 500;
   font-size: clamp(12px, 0.88vw, 24px);
 `;
 export const FilterText = styled.div``;
 export const DateChoice = styled.input`
   border: none;
   background-color: transparent;
-  font-family: "SCDream5";
+  font-weight: 500;
   font-size: clamp(12px, 0.88vw, 24px);
   text-align: center;
 `;

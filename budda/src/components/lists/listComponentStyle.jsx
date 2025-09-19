@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const slideDown = keyframes`
   0% {
@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
 export const Header = styled.div`
   position: relative;
   display: flex;
-  font-family: SCDream5;
+  font-weight: 500;
   gap: 2vw;
   font-size: clamp(14px, 1vw, 28px);
 `;
@@ -31,14 +31,13 @@ export const Header = styled.div`
 export const List = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: SCDream4;
   font-size: clamp(12px, 0.88vw, 24px);
   width: fit-content;
   gap: 1.2vh;
 `;
 
 export const Item = styled.div`
-  animation: ${({ shouldAnimate }) => (shouldAnimate ? slideDown : "none")} 0.3s
+  animation: ${({ shouldAnimate }) => (shouldAnimate ? slideDown : 'none')} 0.3s
     ease-in;
   display: flex;
   gap: 2vw;
@@ -56,7 +55,7 @@ export const Item = styled.div`
     transform: scale(0.98);
     transition: transform 0.2s ease;
     border-color: #c69b0f;
-    font-family: SCDream5;
+    font-weight: 500;
   }
 `;
 
@@ -112,7 +111,6 @@ export const But = styled.div`
 
 export const Num = styled.div`
   width: clamp(40px, 8vw, 100px);
-  font-family: "SCDream4";
   font-size: clamp(12px, 0.88vw, 24px);
   display: flex;
   justify-content: center;

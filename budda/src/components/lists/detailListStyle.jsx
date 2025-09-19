@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const slideDown = keyframes`
   0% {
@@ -25,7 +25,7 @@ export const Feature = styled.div`
 `;
 
 export const SaleDate = styled.div`
-  animation: ${({ animate }) => (animate ? slideDown : "none")} 0.3s ease-in;
+  animation: ${({ animate }) => (animate ? slideDown : 'none')} 0.3s ease-in;
   display: flex;
   align-items: center;
   height: 28px;
@@ -33,7 +33,6 @@ export const SaleDate = styled.div`
 
 export const Title = styled.div`
   display: flex;
-  font-family: "SCDream4";
   font-size: clamp(12px, 1.4vw, 14px);
   width: 12.8vw;
   min-width: 80px;
@@ -41,8 +40,8 @@ export const Title = styled.div`
 
 export const Text = styled.div`
   display: flex;
-  font-family: "SCDream5";
   font-size: clamp(12px, 1.4vw, 14px);
+  font-weight: 500;
   white-space: nowrap;
   width: 16vw;
   min-width: 80px;

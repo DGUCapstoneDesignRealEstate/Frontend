@@ -1,5 +1,4 @@
 .searchbartext {
-  font-family: 'SCDream4';
   font-size: clamp(12px, 0.88vw, 24px);
   color: #777;
   background-color: transparent;
@@ -9,5 +8,5 @@
 .searchbartext:focus {
   outline: none;
   color: black;
-  font-family: 'SCDream5';
+  font-weight: 500;
 }
