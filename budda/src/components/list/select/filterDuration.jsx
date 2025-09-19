@@ -14,6 +14,7 @@ export default function FilterDuration() {
           max={endDate}
           onChange={handleStartDate}
           required
+          value={startDate}
         />
         ~
         <S.DateChoice
@@ -22,6 +23,7 @@ export default function FilterDuration() {
           min={startDate}
           max={today}
           onChange={handleEndDate}
+          value={endDate}
         />
       </S.Du>
     </S.FilterWrapper>

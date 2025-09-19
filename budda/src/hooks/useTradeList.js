@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFilterContext } from '../context/FilterContext';
 import api from '../axios';
+import useUrlQuery from './useUrlQuery';
 
 export default function useTradeList() {
   const {
@@ -13,6 +14,15 @@ export default function useTradeList() {
     endDate,
     isDoubt,
     reliability,
+    setSelectedGu,
+    setFilteredDong,
+    setSelectedDong,
+    setSelectedApt,
+    setSelectedArea,
+    setSelectedOrderType,
+    handleStartDate,
+    handleEndDate,
+    handleDoubt,
   } = useFilterContext();
 
   const [pageNum, setPageNum] = useState(1); //리스트 현재 페이지 번호
@@ -45,7 +55,7 @@ export default function useTradeList() {
           reliability: reliability,
           notValid: true,
           order: selectedOrderType.inorder,
-          orderType: selectedGu.eng,
+          orderType: selectedOrderType.eng,
           page: pageNum - 1,
         },
       });
@@ -72,6 +82,39 @@ export default function useTradeList() {
     isDoubt,
     reliability,
   ]);
+
+  useUrlQuery(
+    {
+      gu: selectedGu?.name,
+      dong: selectedDong?.name,
+      apt: selectedApt?.apartmentName,
+      area: selectedArea?.areaForExclusiveUse,
+      order: selectedOrderType?.eng || 'DEAL_DATE',
+      from: startDate || undefined,
+      to: endDate || undefined,
+      rel: reliability,
+    },
+    pageNum,
+    {
+      setSelectedGu,
+      setFilteredDong,
+      setSelectedDong,
+      setSelectedApt,
+      setSelectedArea,
+      setSelectedOrderType,
+      handleStartDate,
+      handleEndDate,
+      handleDoubt,
+      currentReliability: reliability,
+      setPage: setPageNum,
+    },
+    {
+      defaults: { order: 'DEAL_DATE', page: 1 },
+      pushOnPageChange: true,
+      replaceOnFilterChange: true,
+    }
+  );
+
   return {
     aptList,
     load,
