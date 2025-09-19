@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import * as S from "./detailListStyle";
-import None from "./none";
-import { useDetailContext } from "../../context/DetailContext";
+import React, { useEffect, useState } from 'react';
+import * as S from './styles/detailListStyle';
+import None from '../common/none';
+import { useDetailContext } from '../../context/DetailContext';
 
 export default function DetailList() {
   const { aptInfo } = useDetailContext();
@@ -13,7 +13,7 @@ export default function DetailList() {
 
   if (!aptInfo) {
     return (
-      <div style={{ marginLeft: "4vw" }}>
+      <div style={{ marginLeft: '4vw' }}>
         <None noText="해당 아파트 정보가 없습니다." />
       </div>
     );

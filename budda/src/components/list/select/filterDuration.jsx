@@ -1,6 +1,5 @@
-import React from "react";
-import * as S from "./filterDurationStyle";
-import { useFilterContext } from "../../context/FilterContext";
+import * as S from '../styles/filterDurationStyle.js';
+import { useFilterContext } from '../../../context/FilterContext';
 
 export default function FilterDuration() {
   const { today, startDate, endDate, handleEndDate, handleStartDate } =

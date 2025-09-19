@@ -1,11 +1,11 @@
-import Header from '../components/header/header';
-import FilterList from '../components/select/filterList';
+import Header from '../components/common/header/header';
 import styled from 'styled-components';
-import ListCompo from '../components/lists/listComponent';
-import SearchBar from '../components/searchBar/searchBar';
 import { FilterProvider } from '../context/FilterContext';
+import TradeList from '../components/list/TradeList';
+import FilterList from '../components/list/select/filterList';
+import SearchBar from '../components/list/SearchBar';
 
-const Wrapper = styled.div`
+const Container = styled.div`
   position: absolute;
   top: calc(96px + 2vh);
   display: flex;
@@ -35,14 +35,14 @@ export default function ListPage() {
 
   return (
     <FilterProvider>
-      <Wrapper>
+      <Container>
         <Head>
           <FilterList />
           <SearchBar />
         </Head>
-        <ListCompo />
+        <TradeList />
         <Header title={title} />
-      </Wrapper>
+      </Container>
     </FilterProvider>
   );
 }

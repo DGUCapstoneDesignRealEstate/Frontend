@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Header from '../components/header/header';
-import DetailList from '../components/lists/detailList';
-import LineGraph from '../components/lists/LineGraph';
-import KakaoMap from '../components/kakaoMap';
+import Header from '../components/common/header/header';
+import DetailList from '../components/detail/detailList';
+import LineGraph from '../components/detail/LineGraph';
+import KakaoMap from '../components/detail/map/kakaoMap';
 import { useDetailContext } from '../context/DetailContext';
 
 const Wrapper = styled.div`
