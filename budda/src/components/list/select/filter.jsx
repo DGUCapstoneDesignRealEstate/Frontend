@@ -91,9 +91,13 @@ const Ripple = styled.span`
   }
 `;
 
-export default function Filter({ list, width = '120px', onChange }) {
+export default function Filter({
+  list,
+  width = '120px',
+  onChange,
+  selectedValue,
+}) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(list[0].name);
   const [ripplePosition, setRipplePosition] = useState(null);
   const [isPressed, setIsPressed] = useState(false);
   const wrapperRef = useRef(null);
@@ -115,7 +119,6 @@ export default function Filter({ list, width = '120px', onChange }) {
   };
 
   const handleOption = (option) => {
-    setSelectedOption(option);
     setIsOpen(false);
     if (onChange) {
       onChange(option); // 선택된 옵션을 외부로 전달
@@ -143,7 +146,7 @@ export default function Filter({ list, width = '120px', onChange }) {
         width={width}
       >
         <FilterText>
-          {selectedOption ||
+          {selectedValue ||
             list[0].apartmentName ||
             list[0].areaForExclusiveUse}
         </FilterText>

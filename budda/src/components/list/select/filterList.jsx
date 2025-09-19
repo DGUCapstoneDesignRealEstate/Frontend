@@ -20,15 +20,43 @@ export default function FilterList() {
     handleAptChange,
     handleAreaChange,
     handleOrderType,
+    selectedGu,
+    selectedDong,
+    selectedApt,
+    selectedArea,
+    selectedOrderType,
+    startDate,
+    endDate,
   } = useFilterContext();
 
   return (
     <FilterWrapper>
-      <Filter list={arrayList} onChange={handleOrderType} />
-      <Filter list={guList} onChange={handleGuChange} />
-      <Filter list={filteredDong} onChange={handleDongChange} />
-      <Filter list={aptList} width="240px" onChange={handleAptChange} />
-      <Filter list={areaList} onChange={handleAreaChange} />
+      <Filter
+        list={arrayList}
+        onChange={handleOrderType}
+        selectedValue={selectedOrderType?.name}
+      />
+      <Filter
+        list={guList}
+        onChange={handleGuChange}
+        selectedValue={selectedGu?.name}
+      />
+      <Filter
+        list={filteredDong}
+        onChange={handleDongChange}
+        selectedValue={selectedDong?.name}
+      />
+      <Filter
+        list={aptList}
+        width="240px"
+        onChange={handleAptChange}
+        selectedValue={selectedApt?.apartmentName}
+      />
+      <Filter
+        list={areaList}
+        onChange={handleAreaChange}
+        selectedValue={selectedArea?.areaForExclusiveUse}
+      />
       <FilterDuration />
     </FilterWrapper>
   );
