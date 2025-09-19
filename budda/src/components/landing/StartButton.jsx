@@ -22,10 +22,10 @@ const Text = styled.span`
 
 export default function StartButton() {
   return (
-    <Container>
-      <Link to="/all-list" style={{ textDecoration: 'none' }}>
+    <Link to="/all-list" style={{ textDecoration: 'none' }}>
+      <Container>
         <Text>시작하기</Text>
-      </Link>
-    </Container>
+      </Container>
+    </Link>
   );
 }
