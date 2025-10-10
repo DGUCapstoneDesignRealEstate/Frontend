@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useFilterContext } from '../context/FilterContext';
+import {
+  useFilterActionContext,
+  useFilterStateContext,
+} from '../context/FilterContext';
 import api from '../axios';
 import useUrlQuery from './useUrlQuery';
 
@@ -14,6 +17,9 @@ export default function useTradeList() {
     endDate,
     isDoubt,
     reliability,
+  } = useFilterStateContext();
+
+  const {
     setSelectedGu,
     setFilteredDong,
     setSelectedDong,
@@ -23,7 +29,7 @@ export default function useTradeList() {
     handleStartDate,
     handleEndDate,
     handleDoubt,
-  } = useFilterContext();
+  } = useFilterActionContext();
 
   const [pageNum, setPageNum] = useState(1); //리스트 현재 페이지 번호
   const [aptList, setAptList] = useState([]); //아파트 리스트

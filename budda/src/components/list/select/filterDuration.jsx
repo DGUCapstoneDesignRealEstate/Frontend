@@ -1,9 +1,12 @@
 import * as S from '../styles/filterDurationStyle.js';
-import { useFilterContext } from '../../../context/FilterContext';
+import {
+  useFilterActionContext,
+  useFilterStateContext,
+} from '../../../context/FilterContext';
 
 export default function FilterDuration() {
-  const { today, startDate, endDate, handleEndDate, handleStartDate } =
-    useFilterContext();
+  const { today, startDate, endDate } = useFilterStateContext();
+  const { handleEndDate, handleStartDate } = useFilterActionContext();
 
   return (
     <S.FilterWrapper>
