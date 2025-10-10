@@ -1,6 +1,9 @@
 import { PiSirenFill } from 'react-icons/pi';
 import styled, { keyframes } from 'styled-components';
-import { useFilterContext } from '../../../context/FilterContext';
+import {
+  useFilterActionContext,
+  useFilterStateContext,
+} from '../../../context/FilterContext';
 
 const pressEffect = keyframes`
   0% { transform: scale(1); }
@@ -15,7 +18,8 @@ const SelButton = styled.div`
 `;
 
 export default function DoubtToggle() {
-  const { isDoubt, isPressed, handleDoubt } = useFilterContext();
+  const { isDoubt, isPressed } = useFilterStateContext();
+  const { handleDoubt } = useFilterActionContext();
 
   return (
     <SelButton onClick={handleDoubt} isPressed={isPressed}>

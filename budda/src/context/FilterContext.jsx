@@ -1,16 +1,13 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-} from 'react';
-import axios from '../axios';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { guList, dongList, arrayList } from '../data/data';
+import getAptList from '../apis/filter/getAptList';
+import getAreaList from '../apis/filter/getAreaList';
 
-const FilterContext = createContext();
+const FilterStateContext = createContext();
+const FilterActionContext = createContext();
 
-export const useFilterContext = () => useContext(FilterContext);
+export const useFilterStateContext = () => useContext(FilterStateContext);
+export const useFilterActionContext = () => useContext(FilterActionContext);
 
 export const FilterProvider = ({ children }) => {
   const [selectedGu, setSelectedGu] = useState(guList[0]);
@@ -26,56 +23,25 @@ export const FilterProvider = ({ children }) => {
   const [selectedArea, setSelectedArea] = useState('전용면적 선택');
   const [selectedOrderType, setSelectedOrderType] = useState(arrayList[0]);
 
-  // 아파트 목록 가져오는 함수
-  const fetchAptList = useCallback(async () => {
-    try {
-      const response = await axios.get(
-        'apartment-transactions/apartment-name',
-        {
-          params: {
-            gu: selectedGu.name,
-            dong: selectedDong.name,
-            notValid: true,
-          },
-        }
-      );
-      setAptList(response.data);
-    } catch (e) {
-      console.log(e);
-    }
-  }, [selectedGu, selectedDong]);
+  const today = new Date().toISOString().split('T')[0];
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState(today);
 
-  // 면적 목록 가져오는 함수
-  const fetchAreaList = useCallback(async () => {
-    try {
-      const response = await axios.get('apartment-transactions/area', {
-        params: {
-          gu: selectedGu.name,
-          dong: selectedDong.name,
-          apartmentName: selectedApt.apartmentName,
-          notValid: true,
-        },
-      });
-      setAreaList(response.data);
-    } catch (e) {
-      console.log(e);
-    }
-  }, [selectedGu, selectedDong, selectedApt]);
+  const [isDoubt, setIsDoubt] = useState(false);
+  const [reliability, setReliability] = useState('ALL');
+  const [isPressed, setIsPressed] = useState(false);
 
-  // 구 변경 시 필터링된 동 목록 업데이트
   useEffect(() => {
     setFilteredDong(dongList.filter((dong) => dong.guNum === selectedGu.num));
   }, [selectedGu]);
 
-  // 동 변경 시 아파트 목록 요청
   useEffect(() => {
-    fetchAptList();
-  }, [selectedDong]);
+    setAptList(getAptList(selectedGu, selectedDong));
+  }, [selectedGu, selectedDong]);
 
-  // 아파트 변경 시 면적 목록 요청
   useEffect(() => {
-    fetchAreaList();
-  }, [selectedApt]);
+    setAreaList(getAreaList(selectedGu, selectedDong, selectedApt));
+  }, [selectedGu, selectedDong, selectedApt]);
 
   // 구 선택 변경 핸들러
   const handleGuChange = (selectedGuName) => {
@@ -84,15 +50,9 @@ export const FilterProvider = ({ children }) => {
   };
 
   // 동 선택 변경 핸들러
-  const handleDongChange = (selDong) => {
-    const selectedDong = filteredDong.find((dong) => dong.name === selDong);
+  const handleDongChange = (selected) => {
+    const selectedDong = filteredDong.find((dong) => dong.name === selected);
     setSelectedDong(selectedDong || filteredDong[0]);
-
-    // 동 변경 시, selectedApt을 초기화하지 않도록 조건 추가
-    if (selectedApt !== '아파트 선택') {
-      return; // 이미 사용자가 아파트를 선택했으면 변경하지 않음
-    }
-    // 아파트 선택 전이라면 첫 번째 아파트로 설정하지 않음
   };
 
   // 아파트 선택 변경 핸들러
@@ -114,10 +74,6 @@ export const FilterProvider = ({ children }) => {
     setSelectedOrderType(selectedorder || arrayList[0]);
   };
 
-  const today = new Date().toISOString().split('T')[0];
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState(today);
-
   const handleStartDate = (e) => {
     setStartDate(e.target.value);
   };
@@ -125,10 +81,6 @@ export const FilterProvider = ({ children }) => {
   const handleEndDate = (e) => {
     setEndDate(e.target.value);
   };
-
-  const [isDoubt, setIsDoubt] = useState(false);
-  const [reliability, setReliability] = useState('ALL');
-  const [isPressed, setIsPressed] = useState(false);
 
   const handleDoubt = () => {
     setIsDoubt((prev) => !prev);
@@ -141,44 +93,39 @@ export const FilterProvider = ({ children }) => {
     setTimeout(() => setIsPressed(false), 200); // 애니메이션 끝나면 초기화
   };
 
+  const stateValue = {
+    selectedGu,
+    filteredDong,
+    selectedDong,
+    aptList,
+    areaList,
+    selectedApt,
+    selectedArea,
+    selectedOrderType,
+    startDate,
+    endDate,
+    today,
+    isDoubt,
+    reliability,
+    isPressed,
+  };
+
+  const actionsValue = {
+    handleGuChange,
+    handleDongChange,
+    handleAptChange,
+    handleAreaChange,
+    handleOrderType,
+    handleStartDate,
+    handleEndDate,
+    handleDoubt,
+  };
+
   return (
-    <FilterContext.Provider
-      value={{
-        selectedGu,
-        setSelectedGu,
-        filteredDong,
-        setFilteredDong,
-        selectedDong,
-        setSelectedDong,
-        aptList,
-        setAptList,
-        areaList,
-        setAreaList,
-        selectedApt,
-        setSelectedApt,
-        selectedArea,
-        selectedOrderType,
-        setSelectedOrderType,
-        setSelectedArea,
-        handleGuChange,
-        handleDongChange,
-        handleAptChange,
-        handleAreaChange,
-        handleOrderType,
-
-        today,
-        startDate,
-        endDate,
-        handleStartDate,
-        handleEndDate,
-
-        isDoubt,
-        isPressed,
-        handleDoubt,
-        reliability,
-      }}
-    >
-      {children}
-    </FilterContext.Provider>
+    <FilterStateContext.Provider value={stateValue}>
+      <FilterActionContext.Provider value={actionsValue}>
+        {children}
+      </FilterActionContext.Provider>
+    </FilterStateContext.Provider>
   );
 };

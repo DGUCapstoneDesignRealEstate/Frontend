@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import Filter from './filter';
 import FilterDuration from './filterDuration';
 import { arrayList, guList } from '../../../data/data';
-import { useFilterContext } from '../../../context/FilterContext';
+import {
+  useFilterActionContext,
+  useFilterStateContext,
+} from '../../../context/FilterContext';
 
 const FilterWrapper = styled.div`
   position: relative;
@@ -15,19 +18,19 @@ export default function FilterList() {
     filteredDong,
     aptList,
     areaList,
-    handleGuChange,
-    handleDongChange,
-    handleAptChange,
-    handleAreaChange,
-    handleOrderType,
     selectedGu,
     selectedDong,
     selectedApt,
     selectedArea,
     selectedOrderType,
-    startDate,
-    endDate,
-  } = useFilterContext();
+  } = useFilterStateContext();
+  const {
+    handleGuChange,
+    handleDongChange,
+    handleAptChange,
+    handleAreaChange,
+    handleOrderType,
+  } = useFilterActionContext();
 
   return (
     <FilterWrapper>
